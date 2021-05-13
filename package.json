@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kkfor/for-editor.git"
+    "url": "git+https://github.com/TJLHQ/markdown.git"
   },
   "keywords": [
     "javascript",
@@ -20,17 +20,17 @@
     "markdown",
     "editor"
   ],
-  "author": "kkfor",
+  "author": "tj",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kkfor/for-editor/issues"
+    "url": "https://github.com/TJLHQ/markdown/issues"
   },
   "files": [
     "dist/",
     "index.d.ts",
     "LICENSE"
   ],
-  "homepage": "https://github.com/kkfor/for-editor#readme",
+  "homepage": "https://github.com/TJLHQ/markdown/issues#readme",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
