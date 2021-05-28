@@ -46,7 +46,6 @@ class App extends Component {
 
   handleSave(value) {
     console.log('触发保存事件', value)
-    console.log('aaa')
   }
   onAddImg=(file)=>{
     console.log(file)
