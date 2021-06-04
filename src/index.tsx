@@ -278,6 +278,10 @@ class MdEditor extends React.Component<P, S> {
           </div>
         </div>
         <div className='drag-icon'>
+          <ul>
+            <li />
+            <li />
+          </ul>
         </div>
       </div>
     )

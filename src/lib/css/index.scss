@@ -331,12 +331,28 @@
   }
   .drag-icon{
     position: absolute;
-    right: 0;
+    right: 0px;
     bottom: 0;
     width: 20px;
     height: 20px;
-    background: url("/src/lib/images/auto-height.png") no-repeat;
-    background-size: cover;
     cursor: move;
+    display: flex;
+    align-items: center;
+    ul{
+      height: 12px;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-around;
+      align-items: center;
+      transform: rotate(-45deg);
+      li{
+        width: 20px;
+        height: 1px;
+        background: #000;
+        &:last-of-type{
+          width: 50%;
+        }
+      }
+    }
   }
 }
