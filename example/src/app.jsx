@@ -74,24 +74,6 @@ class App extends Component {
           </ul>
         </div>
         <div className={styles.editor}>
-          {mobile && (
-            <Editor
-              height={200}
-              toolbar={{
-                h1: true,
-                h2: true,
-                h3: true,
-                save: true,
-                preview: true
-              }}
-              value={value}
-              subfield={false}
-              onChange={value => this.handleChange(value)}
-              onSave={value => this.handleSave(value)}
-              onAddImg={this.onAddImg}
-            />
-          )}
-          {!mobile && (
             <Editor
               ref={(edit)=>this.edit=edit}
               language="en"
@@ -101,7 +83,15 @@ class App extends Component {
               onSave={value => this.handleSave(value)}
               onAddImg={this.onAddImg}
             />
-          )}
+          <Editor
+            ref={(edit)=>this.edit=edit}
+            language="en"
+            height={200}
+            value={value}
+            onChange={value => this.handleChange(value)}
+            onSave={value => this.handleSave(value)}
+            onAddImg={this.onAddImg}
+          />
         </div>
       </div>
     )

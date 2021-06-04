@@ -45,6 +45,7 @@ interface S {
 
 
 class MdEditor extends React.Component<P, S> {
+  private drag: HTMLDivElement
   constructor(props: P) {
     super(props)
 
@@ -89,8 +90,8 @@ class MdEditor extends React.Component<P, S> {
     keydownListen(this)
     this.reLineNum(value)
     this.initLanguage()
-    const drayId=document.querySelector('.drag-icon');
-    drayId.addEventListener('mousedown',(e:any)=>{
+    // const drayId=document.querySelector('.drag-icon');
+    this.drag.addEventListener('mousedown',(e:any)=>{
       this.setState({
         isDrap:true,
         startY:e.clientY
@@ -277,7 +278,10 @@ class MdEditor extends React.Component<P, S> {
             />
           </div>
         </div>
-        <div className='drag-icon'>
+        <div
+          className='drag-icon'
+          ref={(edit)=>this.drag=edit}
+        >
           <ul>
             <li />
             <li />
