@@ -25,7 +25,7 @@ interface P {
   expand: boolean
   subfield: boolean
   toolbar: object
-  language: string
+  language: string,
 }
 
 interface S {
@@ -234,6 +234,7 @@ class MdEditor extends React.Component<P, S> {
                   disabled={disabled}
                   onChange={e => this.handleChange(e)}
                   placeholder={placeholder ? placeholder : words['placeholder']}
+                  maxLength={1000}
                 />
               </div>
             </div>

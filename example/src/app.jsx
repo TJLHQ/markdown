@@ -76,7 +76,7 @@ class App extends Component {
         <div className={styles.editor}>
           {mobile && (
             <Editor
-              height="500px"
+              height="200px"
               toolbar={{
                 h1: true,
                 h2: true,
@@ -95,7 +95,7 @@ class App extends Component {
             <Editor
               ref={(edit)=>this.edit=edit}
               language="en"
-              height="700px"
+              height="200px"
               value={value}
               onChange={value => this.handleChange(value)}
               onSave={value => this.handleSave(value)}
