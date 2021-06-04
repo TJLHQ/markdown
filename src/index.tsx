@@ -20,7 +20,7 @@ interface P {
   fontSize: string
   disabled: boolean
   style: object
-  height: string
+  height: number
   preview: boolean
   expand: boolean
   subfield: boolean
@@ -36,7 +36,11 @@ interface S {
   f_history_index: number
   line_index: number
   value: string
-  words: object
+  words: object,
+  height: number,
+  isDrap:boolean,
+  startY:number,
+  constanceHeight:number
 }
 
 
@@ -52,7 +56,11 @@ class MdEditor extends React.Component<P, S> {
       f_history_index: 0,
       line_index: 1,
       value: props.value,
-      words: {}
+      words: {},
+      height:props.height,
+      isDrap:false,
+      startY:0,
+      constanceHeight:props.height
     }
   }
   private $vm: HTMLTextAreaElement
@@ -81,6 +89,28 @@ class MdEditor extends React.Component<P, S> {
     keydownListen(this)
     this.reLineNum(value)
     this.initLanguage()
+    const drayId=document.querySelector('.drag-icon');
+    drayId.addEventListener('mousedown',(e:any)=>{
+      this.setState({
+        isDrap:true,
+        startY:e.clientY
+      })
+      document.addEventListener('mousemove',this.mouseMove)
+    })
+    document.addEventListener('mouseup',()=>{
+      this.setState({isDrap:false,constanceHeight:this.state.height})
+      document.removeEventListener('mousemove',this.mouseMove)
+    })
+
+  }
+  mouseMove=(e)=>{
+    if(!this.state.isDrap)return
+    const moveY=e.clientY-this.state.startY;
+    const height=this.state.constanceHeight+moveY
+    if(height>this.props.height){
+      this.setState({height})
+    }
+    e.preventDefault()
   }
 
   componentDidUpdate(preProps) {
@@ -168,8 +198,8 @@ class MdEditor extends React.Component<P, S> {
   }
 
   render() {
-    const { preview_switch, expand_switch, subfield_switch, line_index, words } = this.state
-    const { value, placeholder, fontSize, disabled, height, style, toolbar } = this.props
+    const { preview_switch, expand_switch, subfield_switch, line_index, words,height } = this.state
+    const { value, placeholder, fontSize, disabled, style, toolbar } = this.props
     const editorClass = classNames({
       'for-editor-edit': true,
       'for-panel': true,
@@ -200,7 +230,7 @@ class MdEditor extends React.Component<P, S> {
     }
 
     return (
-      <div className={fullscreen} style={{ height, ...style }}>
+      <div className={fullscreen} style={{ height:`${height}px`, ...style }}>
         {/* 菜单栏 */}
         {
           Boolean(Object.keys(toolbar).length) &&
@@ -234,7 +264,6 @@ class MdEditor extends React.Component<P, S> {
                   disabled={disabled}
                   onChange={e => this.handleChange(e)}
                   placeholder={placeholder ? placeholder : words['placeholder']}
-                  maxLength={1000}
                 />
               </div>
             </div>
@@ -247,6 +276,8 @@ class MdEditor extends React.Component<P, S> {
               dangerouslySetInnerHTML={{ __html: marked(value) }}
             />
           </div>
+        </div>
+        <div className='drag-icon'>
         </div>
       </div>
     )

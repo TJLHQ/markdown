@@ -3,11 +3,11 @@
   display: flex;
   flex-direction: column;
   height: 600px;
-  border: 1px solid #ddd;
+  border: 1px solid #EBEDF0;
   border-radius: 8px;
   background: #fff;
   font-size: 14px;
-
+  position: relative;
   ul,
   ol,
   li {
@@ -41,7 +41,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 6px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #EBEDF0;
     color: #555;
     user-select: none;
 
@@ -328,5 +328,15 @@
       max-width: 100%;
       margin-bottom: 0.6em;
     }
+  }
+  .drag-icon{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    background: url("/src/lib/images/auto-height.png") no-repeat;
+    background-size: cover;
+    cursor: move;
   }
 }
